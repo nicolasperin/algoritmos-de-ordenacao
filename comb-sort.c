@@ -4,6 +4,11 @@
 
 #define TAM 50
 
+int gerarGap(int tam_vetor){
+    int gap = (tam_vetor * 10)/13;
+    return gap;
+}
+
 void gerarAleatorio(long int * vetor, long int n){
     long int i;
     for(i=0; i< n; i++){
@@ -12,7 +17,7 @@ void gerarAleatorio(long int * vetor, long int n){
 }
 
 void swap(long int *v, int i){            
-    long int aux = v[i];
+    int aux = v[i];
     v[i] = v[i+1];
     v[i+1] = aux;
 }
@@ -20,10 +25,12 @@ void swap(long int *v, int i){
 void bubbleSort(long int *vetor, long int tam_vetor) {
     int i, j, atual;
     int troca = 1;
+    int gap = tam_vetor;
     int qtd_trocas = 0;
-    while (troca){
+    while (troca && (gap > 1)){
         troca = 0;
-        for (i = 0; i < tam_vetor - 1; i++){
+        gap = gerarGap(gap);
+        for (i = 0; i < tam_vetor - gap; i++){ 
             atual = vetor[i];
             if (atual > vetor[i + 1]){
                 swap(vetor, i);
